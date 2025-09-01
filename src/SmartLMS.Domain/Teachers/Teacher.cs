@@ -33,4 +33,8 @@ public class Teacher : AggregateRoot<Guid>
         Email = email;
         Bio = bio;
     }
+
+#pragma warning disable CS8618
+	private Teacher() { }
+#pragma warning restore CS8618
 }

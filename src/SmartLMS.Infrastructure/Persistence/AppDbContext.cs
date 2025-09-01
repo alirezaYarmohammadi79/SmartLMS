@@ -1,13 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SmartLMS.Domain.Common.Models;
 using SmartLMS.Domain.Courses;
 using SmartLMS.Domain.Students;
 using SmartLMS.Domain.Teachers;
-using SmartLMS.Infrastructure.Persistence.Configurations.Courses;
-using SmartLMS.Infrastructure.Persistence.Configurations.Students;
-using SmartLMS.Infrastructure.Persistence.Configurations.Teachers;
 using SmartLMS.Infrastructure.Persistence.Interceptors;
+using SmartLMS.Domain.Courses.Entities;
 
 namespace SmartLMS.Infrastructure.Persistence;
 
@@ -18,10 +15,11 @@ public class AppDbContext : DbContext
     public DbSet<Course> Courses => Set<Course>();
     public DbSet<Student> Students => Set<Student>();
     public DbSet<Teacher> Teachers => Set<Teacher>();
+    public DbSet<Enrollment> Enrollments => Set<Enrollment>();
 
     public AppDbContext(DbContextOptions<AppDbContext> options,
-       PublishDomainEventsInterceptor publishDomainEventsInterceptor
-    ) : base(options)
+       PublishDomainEventsInterceptor publishDomainEventsInterceptor = null!
+	) : base(options)
     {
         _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
     }

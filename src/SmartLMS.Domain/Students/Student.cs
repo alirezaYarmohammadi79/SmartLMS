@@ -41,4 +41,8 @@ public class Student : AggregateRoot<Guid>
     }
 
     public void ChangeStatus(StudentStatus newStatus) => Status = newStatus;
+
+#pragma warning disable CS8618
+	private Student() { }
+#pragma warning restore CS8618
 }

@@ -63,10 +63,5 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
         // Enrollments collection (private field)
         builder.Navigation(nameof(Course.Enrollments))
                .UsePropertyAccessMode(PropertyAccessMode.Field);
-
-        builder.HasMany(typeof(Enrollment), "_enrollments")
-               .WithOne()
-               .HasForeignKey("CourseId")
-               .OnDelete(DeleteBehavior.Cascade);
     }
 }

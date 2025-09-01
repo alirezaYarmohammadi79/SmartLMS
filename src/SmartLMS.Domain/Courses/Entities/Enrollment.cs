@@ -23,4 +23,8 @@ public class Enrollment : Entity<Guid>
 
         Grade = grade;
     }
+
+#pragma warning disable CS8618
+	private Enrollment() { }
+#pragma warning restore CS8618
 }

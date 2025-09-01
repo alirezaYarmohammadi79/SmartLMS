@@ -24,4 +24,8 @@ public sealed class Price : ValueObject
         yield return Amount;
         yield return Currency;
     }
+
+	public Price()
+	{
+	}
 }
