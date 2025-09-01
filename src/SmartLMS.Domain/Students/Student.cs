@@ -1,17 +1,16 @@
-﻿using SmartLMS.Domain.Common.Exceptions;
-using SmartLMS.Domain.Common.Models;
+﻿using SmartLMS.Domain.Common.Models;
+using SmartLMS.Domain.Common.ValueObjects;
 using SmartLMS.Domain.Students.Enum;
 using SmartLMS.Domain.Students.Events;
 using SmartLMS.Domain.Students.ValueObjects;
-using SmartLMS.Domain.Teachers.ValueObjects;
 
 namespace SmartLMS.Domain.Students;
 
 public class Student : AggregateRoot<Guid>
 {
-    public FullName Name { get; private set; }
+    public FullName FullName { get; private set; }
     public Email Email { get; private set; }
-    public DateOfBirth? DOB { get; private set; }
+    public DateOfBirth? DateOfBirth { get; private set; }
     public StudentStatus Status { get; private set; } 
 
     private Student(Guid id, 
@@ -21,9 +20,9 @@ public class Student : AggregateRoot<Guid>
         StudentStatus status = StudentStatus.Active)
         : base(id)
     {
-        Name = name;
+        FullName = name;
         Email = email;
-        DOB = dob;
+        DateOfBirth = dob;
         Status = status;
     }
 
@@ -36,9 +35,9 @@ public class Student : AggregateRoot<Guid>
 
     public void UpdateInfo(FullName name, Email email, DateOfBirth? dob = null)
     {
-        Name = name;
+        FullName = name;
         Email = email;
-        DOB = dob;
+        DateOfBirth = dob;
     }
 
     public void ChangeStatus(StudentStatus newStatus) => Status = newStatus;

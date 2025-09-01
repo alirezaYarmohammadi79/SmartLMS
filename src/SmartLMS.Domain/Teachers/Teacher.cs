@@ -1,19 +1,19 @@
 ﻿using SmartLMS.Domain.Common.Models;
+using SmartLMS.Domain.Common.ValueObjects;
 using SmartLMS.Domain.Teachers.Events;
-using SmartLMS.Domain.Teachers.ValueObjects;
 
 namespace SmartLMS.Domain.Teachers;
 
 public class Teacher : AggregateRoot<Guid>
 {
-    public FullName Name { get; private set; }
+    public FullName FullName { get; private set; }
     public Email Email { get; private set; }
     public string? Bio { get; private set; }
 
     private Teacher(Guid id, FullName name, Email email, string? bio)
         : base(id)
     {
-        Name = name;
+        FullName = name;
         Email = email;
         Bio = bio;
     }
@@ -29,7 +29,7 @@ public class Teacher : AggregateRoot<Guid>
     // Update teacher info
     public void UpdateInfo(FullName name, Email email, string? bio = null)
     {
-        Name = name;
+        FullName = name;
         Email = email;
         Bio = bio;
     }

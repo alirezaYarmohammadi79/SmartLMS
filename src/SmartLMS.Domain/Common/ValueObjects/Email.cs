@@ -2,7 +2,7 @@
 using SmartLMS.Domain.Common.Models;
 using System.Text.RegularExpressions;
 
-namespace SmartLMS.Domain.Teachers.ValueObjects;
+namespace SmartLMS.Domain.Common.ValueObjects;
 
 public sealed class Email : ValueObject
 {
