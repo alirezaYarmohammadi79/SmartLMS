@@ -1,0 +1,36 @@
+﻿using SmartLMS.Domain.Common.Models;
+using SmartLMS.Domain.Teachers.Events;
+using SmartLMS.Domain.Teachers.ValueObjects;
+
+namespace SmartLMS.Domain.Teachers;
+
+public class Teacher : AggregateRoot<Guid>
+{
+    public FullName Name { get; private set; }
+    public Email Email { get; private set; }
+    public string? Bio { get; private set; }
+
+    private Teacher(Guid id, FullName name, Email email, string? bio)
+        : base(id)
+    {
+        Name = name;
+        Email = email;
+        Bio = bio;
+    }
+
+    // Factory method
+    public static Teacher Create(FullName name, Email email, string? bio = null)
+    {
+        var teacher = new Teacher(Guid.NewGuid(), name, email, bio);
+        teacher.AddDomainEvent(new TeacherCreated(teacher));
+        return teacher;
+    }
+
+    // Update teacher info
+    public void UpdateInfo(FullName name, Email email, string? bio = null)
+    {
+        Name = name;
+        Email = email;
+        Bio = bio;
+    }
+}
