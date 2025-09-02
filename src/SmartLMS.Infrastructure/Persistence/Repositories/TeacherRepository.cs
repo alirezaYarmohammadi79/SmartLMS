@@ -6,26 +6,23 @@ namespace SmartLMS.Infrastructure.Persistence.Repositories;
 
 public class TeacherRepository : ITeacherRepository
 {
-    private readonly AppDbContext _dbContext;
+	public Task AddAsync(Teacher teacher)
+	{
+		throw new NotImplementedException();
+	}
 
-    public TeacherRepository(AppDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+	public Task DeleteAsync(Guid teacherId)
+	{
+		throw new NotImplementedException();
+	}
 
-    public async Task<Teacher?> GetByIdAsync(Guid id)
-    {
-        return await _dbContext.Teachers.FirstOrDefaultAsync(t => t.Id == id);
-    }
+	public Task<Teacher?> GetByIdAsync(Guid teacherId)
+	{
+		throw new NotImplementedException();
+	}
 
-    public async Task SaveAsync(Teacher teacher)
-    {
-        _dbContext.Update(teacher);
-        await _dbContext.SaveChangesAsync();
-    }
-
-    public async Task<bool> ExistsAsync(Guid id)
-    {
-        return await _dbContext.Teachers.AnyAsync(t => t.Id == id);
-    }
+	public Task UpdateAsync(Teacher teacher)
+	{
+		throw new NotImplementedException();
+	}
 }

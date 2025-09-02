@@ -40,7 +40,7 @@ public class Course : AggregateRoot<Guid>
         DateRange period,
         Capacity capacity,
         Price price,
-        TeacherId? teacherId)
+        TeacherId teacherId)
     {
         var course = new Course(
             Guid.NewGuid(),

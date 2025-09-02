@@ -1,0 +1,36 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using SmartLMS.Domain.Courses;
+using SmartLMS.Infrastructure.Persistence;
+using SmartLMS.Infrastructure.Persistence.Interceptors;
+using SmartLMS.Infrastructure.Persistence.Repositories;
+
+namespace SmartLMS.Infrastructure;
+
+public static class DependencyInjectionRegister
+{
+	public static IServiceCollection AddInfrastructure(
+		this IServiceCollection services,
+		IConfiguration configration)
+	{
+		services
+			.AddPersistance(configration);
+
+
+		return services;
+	}
+
+	public static IServiceCollection AddPersistance(this IServiceCollection services , IConfiguration configuration)
+	{
+		services.AddDbContext<AppDbContext>(options =>
+			options.UseSqlServer(configuration.GetConnectionString("SQLConnection")));
+
+		services.AddScoped<PublishDomainEventsInterceptor>();
+		services.AddScoped<ICourseRepository, CourseRepository>();
+
+		return services;
+	}
+
+}
