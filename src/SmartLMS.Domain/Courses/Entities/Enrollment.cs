@@ -6,13 +6,15 @@ namespace SmartLMS.Domain.Courses.Entities;
 public class Enrollment : Entity<Guid>
 {
     public Guid StudentId { get; private set; }
+    public Guid CourseId { get; private set; }
     public DateTime EnrollmentDate { get; private set; }
     public decimal? Grade { get; private set; }
 
-    public Enrollment(Guid studentId, DateTime enrollmentDate)
+    public Enrollment(Guid studentId , Guid courseId, DateTime enrollmentDate)
     {
         Id = Guid.NewGuid(); 
         StudentId = studentId;
+        CourseId = courseId;
         EnrollmentDate = enrollmentDate;
     }
 

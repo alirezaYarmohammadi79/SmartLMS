@@ -40,7 +40,7 @@ public class Course : AggregateRoot<Guid>
         DateRange period,
         Capacity capacity,
         Price price,
-        TeacherId teacherId)
+        TeacherId? teacherId)
     {
         var course = new Course(
             Guid.NewGuid(),
@@ -72,7 +72,7 @@ public class Course : AggregateRoot<Guid>
         if (!Period.IsWithin(DateTime.UtcNow))
             throw new DomainException("Course enrollment closed");
 
-        var enrollment = new Enrollment(studentId, DateTime.UtcNow);
+        var enrollment = new Enrollment(studentId , Id, DateTime.UtcNow);
         _enrollments.Add(enrollment);
 
         AddDomainEvent(new StudentEnrolled(Id, studentId));

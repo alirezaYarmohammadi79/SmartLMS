@@ -2,7 +2,15 @@
 
 public interface IStudentRepository
 {
-    Task<Student?> GetByIdAsync(Guid id);
-    Task SaveAsync(Student student);
-    Task<bool> ExistsAsync(Guid id);
+	// Create a new student
+	Task AddAsync(Student student);
+
+	// Update student info
+	Task UpdateAsync(Student student);
+
+	// Delete a student
+	Task DeleteAsync(Guid studentId);
+
+	// Retrieve a student aggregate by ID
+	Task<Student?> GetByIdAsync(Guid studentId);
 }

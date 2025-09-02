@@ -31,7 +31,7 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
 
 		builder.HasOne<Course>()
                .WithMany(c => c.Enrollments)
-               .HasForeignKey("CourseId")
+               .HasForeignKey(e => e.CourseId)
                .IsRequired()
                .OnDelete(DeleteBehavior.Cascade);
     }

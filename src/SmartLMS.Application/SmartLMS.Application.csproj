@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
+    <Folder Include="Course\Command\AssignTeacher\" />
+    <Folder Include="Course\Command\SetFinalGradeCommand\" />
+    <Folder Include="Teacher\Query\" />
   </ItemGroup>
 
 </Project>
