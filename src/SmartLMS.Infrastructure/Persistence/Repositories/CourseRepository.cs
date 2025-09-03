@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartLMS.Domain.Common.Exceptions;
 using SmartLMS.Domain.Courses;
+using SmartLMS.Infrastructure.Persistence.Exceptions;
 
 namespace SmartLMS.Infrastructure.Persistence.Repositories;
 
@@ -45,7 +46,7 @@ public class CourseRepository : ICourseRepository
 	{
 		var course = await GetByIdAsync(courseId, ct);
 		if (course is null)
-			throw new DomainException("Course not found");
+			throw new RecordNotFoundException("Course", courseId);
 
 		course.EnrollStudent(studentId);
 
@@ -56,7 +57,7 @@ public class CourseRepository : ICourseRepository
 	{
 		var course = await GetByIdAsync(courseId, ct);
 		if (course is null)
-			throw new DomainException("Course not found");
+			throw new RecordNotFoundException("Course", courseId);
 
 		course.AssignGrade(studentId, grade);
 

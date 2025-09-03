@@ -9,11 +9,11 @@ public sealed class DateOfBirth : ValueObject
 
     public DateOfBirth(DateTime value)
     {
-        if (value > DateTime.UtcNow)
-            throw new DomainException("Date of birth cannot be in the future");
+		if (value > DateTime.UtcNow)
+			throw new DateOfBirthCannotBeInTheFutureException(value);
 
-        Value = value;
-    }
+		Value = value;
+	}
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

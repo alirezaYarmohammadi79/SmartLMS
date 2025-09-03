@@ -10,10 +10,10 @@ public sealed class CourseTitle : ValueObject
     public CourseTitle(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new DomainException("Course title cannot be empty.");
+            throw new CourseTitleCannotBeEmptyException();
 
         if (value.Length > 200)
-            throw new DomainException("Course title is too long.");
+            throw new CourseTitleTooLongException(value.Length);
 
         Value = value;
     }

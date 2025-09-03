@@ -12,21 +12,21 @@ public sealed class FullName : ValueObject
 
     public FullName(string firstName, string lastName)
     {
-        if (string.IsNullOrWhiteSpace(firstName))
-            throw new DomainException("FirstName cannot be empty");
+		if (string.IsNullOrWhiteSpace(firstName))
+			throw new FirstNameCannotBeEmptyException();
 
-        if (string.IsNullOrWhiteSpace(lastName))
-            throw new DomainException("LastName cannot be empty");
+		if (string.IsNullOrWhiteSpace(lastName))
+			throw new LastNameCannotBeEmptyException();
 
-        if (firstName.Length > 100)
-            throw new DomainException("FirstName cannot exceed 100 characters");
+		if (firstName.Length > 100)
+			throw new FirstNameTooLongException(firstName.Length);
 
-        if (lastName.Length > 100)
-            throw new DomainException("LastName cannot exceed 100 characters");
+		if (lastName.Length > 100)
+			throw new LastNameTooLongException(lastName.Length);
 
-        FirstName = firstName;
-        LastName = lastName;
-    }
+		FirstName = firstName;
+		LastName = lastName;
+	}
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

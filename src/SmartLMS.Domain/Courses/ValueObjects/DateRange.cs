@@ -11,7 +11,7 @@ public sealed class DateRange : ValueObject
     public DateRange(DateTime start, DateTime end)
     {
         if (start >= end)
-            throw new DomainException("Start date must be before end date.");
+            throw new InvalidDateRangeException(start , end);
 
         Start = start;
         End = end;

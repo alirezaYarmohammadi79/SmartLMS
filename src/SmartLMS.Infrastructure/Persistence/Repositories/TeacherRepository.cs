@@ -1,28 +1,52 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartLMS.Domain.Common.Exceptions;
 using SmartLMS.Domain.Teachers;
+using SmartLMS.Infrastructure.Persistence.Exceptions;
 using System;
 
 namespace SmartLMS.Infrastructure.Persistence.Repositories;
 
 public class TeacherRepository : ITeacherRepository
 {
-	public Task AddAsync(Teacher teacher)
+	private readonly AppDbContext _db;
+
+	public TeacherRepository(AppDbContext db)
 	{
-		throw new NotImplementedException();
+		_db = db;
 	}
 
-	public Task DeleteAsync(Guid teacherId)
+	// Add a new teacher
+	public async Task AddAsync(Teacher teacher)
 	{
-		throw new NotImplementedException();
+		if (teacher is null) throw new ArgumentNullException(nameof(teacher));
+
+		await _db.Teachers.AddAsync(teacher);
+		await _db.SaveChangesAsync();
 	}
 
-	public Task<Teacher?> GetByIdAsync(Guid teacherId)
+	// Update teacher info
+	public async Task UpdateAsync(Teacher teacher)
 	{
-		throw new NotImplementedException();
+		if (teacher is null) throw new ArgumentNullException(nameof(teacher));
+
+		_db.Teachers.Update(teacher);
+		await _db.SaveChangesAsync();
 	}
 
-	public Task UpdateAsync(Teacher teacher)
+	// Delete a teacher by ID
+	public async Task DeleteAsync(Guid teacherId)
 	{
-		throw new NotImplementedException();
+		var teacher = await _db.Teachers.FindAsync(teacherId);
+		if (teacher is null) throw new RecordNotFoundException("Teacher" , teacherId);
+
+		_db.Teachers.Remove(teacher);
+		await _db.SaveChangesAsync();
+	}
+
+	// Get teacher by ID
+	public async Task<Teacher?> GetByIdAsync(Guid teacherId)
+	{
+		return await _db.Teachers.FindAsync(teacherId);
 	}
 }
+

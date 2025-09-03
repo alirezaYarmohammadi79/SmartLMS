@@ -21,6 +21,6 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 		optionsBuilder.UseSqlServer(connectionString); // adjust for your DB
 
 		// At design time, you can pass null for the interceptor
-		return new AppDbContext(optionsBuilder.Options, publishDomainEventsInterceptor: null);
+		return new AppDbContext(optionsBuilder.Options, publishDomainEventsInterceptor: null!);
 	}
 }

@@ -64,39 +64,41 @@ public class Course : AggregateRoot<Guid>
     public void EnrollStudent(Guid studentId)
     {
         if (_enrollments.Count >= Capacity.MaxSeats)
-            throw new DomainException("Course is full");
+            throw new CourseFullException(Capacity.MaxSeats);
 
         if (_enrollments.Any(e => e.StudentId == studentId))
-            throw new DomainException("Student already enrolled");
+			throw new StudentAlreadyEnrolledException(studentId);
 
-        if (!Period.IsWithin(DateTime.UtcNow))
-            throw new DomainException("Course enrollment closed");
+		if (!Period.IsWithin(DateTime.UtcNow))
+			throw new CourseEnrollmentClosedException(DateTime.UtcNow);
 
-        var enrollment = new Enrollment(studentId , Id, DateTime.UtcNow);
-        _enrollments.Add(enrollment);
+        _enrollments.Add(new Enrollment(studentId, Id, DateTime.UtcNow));
 
         AddDomainEvent(new StudentEnrolled(Id, studentId));
     }
 
     public void RemoveStudent(Guid studentId)
     {
-        var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
-        if (enrollment is null) throw new DomainException("Student not enrolled");
+		var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
+		if (enrollment is null)
+			throw new StudentNotEnrolledException(studentId);
 
-        _enrollments.Remove(enrollment);
-        AddDomainEvent(new StudentRemoved(Id, studentId));
-    }
+		_enrollments.Remove(enrollment);
+		AddDomainEvent(new StudentRemoved(Id, studentId));
+	}
 
     public void AssignGrade(Guid studentId, decimal grade)
     {
-        if (DateTime.UtcNow < Period.End) throw new DomainException("Cannot assign grade before course ends");
+		if (DateTime.UtcNow < Period.End)
+			throw new CannotAssignGradeBeforeCourseEndsException(DateTime.UtcNow, Period.End);
 
-        var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
-        if (enrollment is null) throw new DomainException("Student not enrolled");
+		var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
+		if (enrollment is null)
+			throw new StudentNotEnrolledException(studentId);
 
-        enrollment.SetGrade(grade);
-        AddDomainEvent(new GradeAssigned(Id, studentId, grade));
-    }
+		enrollment.SetGrade(grade);
+		AddDomainEvent(new GradeAssigned(Id, studentId, grade));
+	}
 
     public int RemainingSeats() => Capacity.MaxSeats - _enrollments.Count;
 

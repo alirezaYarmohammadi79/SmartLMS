@@ -9,7 +9,7 @@ public sealed class TeacherId : ValueObject
 
     public TeacherId(Guid value)
     {
-        if (value == Guid.Empty) throw new DomainException("TeacherId cannot be empty");
+        if (value == Guid.Empty) throw new TeacherIdCannotBeEmptyException();
         Value = value;
     }
 

@@ -10,9 +10,9 @@ public sealed class Capacity : ValueObject
     public Capacity(int maxSeats)
     {
         if (maxSeats <= 0)
-            throw new DomainException("Capacity must be greater than zero.");
+			throw new CapacityMustBeGreaterThanZeroException(maxSeats);
 
-        MaxSeats = maxSeats;
+		MaxSeats = maxSeats;
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

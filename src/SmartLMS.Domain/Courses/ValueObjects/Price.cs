@@ -11,9 +11,9 @@ public sealed class Price : ValueObject
     public Price(decimal amount, string currency = "USD")
     {
         if (amount < 0)
-            throw new DomainException("Price cannot be negative.");
+            throw new PriceCannotBeNegativeException(amount);
         if (string.IsNullOrWhiteSpace(currency))
-            throw new DomainException("Currency must be provided.");
+            throw new CurrencyMustBeProvidedException();
 
         Amount = amount;
         Currency = currency;

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using SmartLMS.Application.Common.Interfaces.ReadRepositories;
 using SmartLMS.Domain.Courses;
 using SmartLMS.Infrastructure.Persistence;
 using SmartLMS.Infrastructure.Persistence.Interceptors;
@@ -29,6 +30,7 @@ public static class DependencyInjectionRegister
 
 		services.AddScoped<PublishDomainEventsInterceptor>();
 		services.AddScoped<ICourseRepository, CourseRepository>();
+		services.AddScoped<ICourseReadRepository, CourseReadRepository>();
 
 		return services;
 	}
