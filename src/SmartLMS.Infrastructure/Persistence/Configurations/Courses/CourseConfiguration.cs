@@ -54,14 +54,17 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
         });
 
         builder.Property(c => c.TeacherId)
-               .HasConversion(
-                   t => t.Value,
-                   t => new TeacherId(t))
-               .IsRequired()
                .HasColumnName("TeacherId");
 
-        // Enrollments collection (private field)
+        builder.HasMany(c => c.Enrollments)
+               .WithOne()
+               //.HasForeignKey(e => e.CourseId)
+               .OnDelete(DeleteBehavior.Cascade);
+
         builder.Navigation(nameof(Course.Enrollments))
-               .UsePropertyAccessMode(PropertyAccessMode.Field);
+               .Metadata.SetField("_enrollments");
+
+        builder.Navigation(nameof(Course.Enrollments))
+                .UsePropertyAccessMode(PropertyAccessMode.Field);
     }
 }

@@ -21,7 +21,7 @@ public class Enrollment : Entity<Guid>
     public void SetGrade(decimal grade)
     {
         if (grade <= 0 || grade >= 20)
-            throw new DomainException("Grade must be between 0 and 20");
+            throw new GradeInvalidRangeException();
 
         Grade = grade;
     }

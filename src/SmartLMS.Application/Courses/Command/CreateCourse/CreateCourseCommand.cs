@@ -9,5 +9,5 @@ public record CreateCourseCommand(
 	DateTime EndDate,
 	int Capacity,
 	decimal Price,
-	Guid TeacherId
+	Guid? TeacherId
 ) : IRequest<Guid>;

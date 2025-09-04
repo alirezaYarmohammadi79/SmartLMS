@@ -3,5 +3,5 @@
 public class CapacityMustBeGreaterThanZeroException : DomainException
 {
 	public CapacityMustBeGreaterThanZeroException(int maxSeats)
-		: base($"Capacity must be greater than zero. Given: {maxSeats}") { }
+		: base("CapacityMustBeGreaterThanZero", $"Capacity must be greater than zero. Given: {maxSeats}") { }
 }

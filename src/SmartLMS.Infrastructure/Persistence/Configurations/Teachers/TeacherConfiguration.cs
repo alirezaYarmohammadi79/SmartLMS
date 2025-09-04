@@ -19,14 +19,14 @@ internal sealed class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
         builder.OwnsOne(t => t.FullName, fn =>
         {
             fn.Property(f => f.FirstName)
-              .HasColumnName("FirstName")
               .HasMaxLength(100)
-              .IsRequired();
+              .IsRequired()
+              .HasColumnName("FirstName");
 
             fn.Property(f => f.LastName)
-              .HasColumnName("LastName")
               .HasMaxLength(100)
-              .IsRequired();
+              .IsRequired()
+              .HasColumnName("LastName");
         });
 
         builder.Property(t => t.Email)

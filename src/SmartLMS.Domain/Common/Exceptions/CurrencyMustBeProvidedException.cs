@@ -3,5 +3,5 @@
 public class CurrencyMustBeProvidedException : DomainException
 {
 	public CurrencyMustBeProvidedException()
-		: base("Currency must be provided.") { }
+		: base("CurrencyMustBeProvided", "Currency must be provided.") { }
 }

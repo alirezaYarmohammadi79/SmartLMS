@@ -3,5 +3,5 @@
 public class LastNameTooLongException : DomainException
 {
 	public LastNameTooLongException(int length)
-		: base($"LastName cannot exceed {length} characters.") { }
+		: base("LastNameTooLong", $"LastName cannot exceed {length} characters.") { }
 }

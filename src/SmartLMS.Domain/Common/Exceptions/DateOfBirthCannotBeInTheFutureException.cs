@@ -3,5 +3,5 @@
 public class DateOfBirthCannotBeInTheFutureException : DomainException
 {
 	public DateOfBirthCannotBeInTheFutureException(DateTime date)
-		: base($"Date of birth '{date:yyyy-MM-dd}' cannot be in the future.") { }
+		: base("DateOfBirthCannotBeInTheFuture", $"Date of birth '{date:yyyy-MM-dd}' cannot be in the future.") { }
 }

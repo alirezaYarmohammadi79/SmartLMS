@@ -1,4 +1,5 @@
 using SmartLMS.Api;
+using SmartLMS.Api.Middleware;
 using SmartLMS.Application;
 using SmartLMS.Infrastructure;
 
@@ -17,6 +18,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if (app.Environment.IsDevelopment() is not true)
+{
+}
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

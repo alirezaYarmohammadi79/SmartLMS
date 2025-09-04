@@ -3,5 +3,5 @@
 public class InvalidEmailFormatException : DomainException
 {
 	public InvalidEmailFormatException(string email)
-		: base($"Email '{email}' format is invalid.") { }
+		: base("InvalidEmailFormat", $"Email '{email}' format is invalid.") { }
 }

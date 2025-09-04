@@ -9,4 +9,3 @@ public record CourseResponse(Guid Id,
 	decimal Price,
 	int RemainingSeats,
 	Guid TeacherId);
-

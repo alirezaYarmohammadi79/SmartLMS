@@ -2,6 +2,7 @@
 using SmartLMS.Application.Common.Exceptions;
 using SmartLMS.Domain.Common.Exceptions;
 using SmartLMS.Domain.Courses;
+using SmartLMS.Domain.Courses.Repository;
 
 namespace SmartLMS.Application.Courses.Query.GetCourse;
 

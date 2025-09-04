@@ -3,5 +3,5 @@
 public class InvalidDateRangeException : DomainException
 {
 	public InvalidDateRangeException(DateTime start, DateTime end)
-		: base($"Start date {start} must be before end date {end}.") { }
+		: base("InvalidDateRange", $"Start date {start} must be before end date {end}.") { }
 }

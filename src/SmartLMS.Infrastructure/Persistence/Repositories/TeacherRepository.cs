@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SmartLMS.Domain.Common.Exceptions;
-using SmartLMS.Domain.Teachers;
+﻿using SmartLMS.Domain.Teachers;
+using SmartLMS.Domain.Teachers.Repository;
 using SmartLMS.Infrastructure.Persistence.Exceptions;
-using System;
 
 namespace SmartLMS.Infrastructure.Persistence.Repositories;
 
@@ -16,37 +14,37 @@ public class TeacherRepository : ITeacherRepository
 	}
 
 	// Add a new teacher
-	public async Task AddAsync(Teacher teacher)
+	public async Task AddAsync(Teacher teacher, CancellationToken cancellationToken)
 	{
 		if (teacher is null) throw new ArgumentNullException(nameof(teacher));
 
-		await _db.Teachers.AddAsync(teacher);
-		await _db.SaveChangesAsync();
+		await _db.Teachers.AddAsync(teacher,cancellationToken);
+		await _db.SaveChangesAsync(cancellationToken);
 	}
 
 	// Update teacher info
-	public async Task UpdateAsync(Teacher teacher)
+	public async Task UpdateAsync(Teacher teacher, CancellationToken cancellationToken)
 	{
 		if (teacher is null) throw new ArgumentNullException(nameof(teacher));
 
 		_db.Teachers.Update(teacher);
-		await _db.SaveChangesAsync();
+		await _db.SaveChangesAsync(cancellationToken);
 	}
 
 	// Delete a teacher by ID
-	public async Task DeleteAsync(Guid teacherId)
+	public async Task DeleteAsync(Guid teacherId, CancellationToken cancellationToken)
 	{
-		var teacher = await _db.Teachers.FindAsync(teacherId);
+		var teacher = await _db.Teachers.FindAsync(teacherId, cancellationToken);
 		if (teacher is null) throw new RecordNotFoundException("Teacher" , teacherId);
 
 		_db.Teachers.Remove(teacher);
-		await _db.SaveChangesAsync();
+		await _db.SaveChangesAsync(cancellationToken);
 	}
 
 	// Get teacher by ID
-	public async Task<Teacher?> GetByIdAsync(Guid teacherId)
+	public async Task<Teacher?> GetByIdAsync(Guid teacherId, CancellationToken cancellationToken)
 	{
-		return await _db.Teachers.FindAsync(teacherId);
+		return await _db.Teachers.FindAsync(teacherId, cancellationToken);
 	}
 }
 

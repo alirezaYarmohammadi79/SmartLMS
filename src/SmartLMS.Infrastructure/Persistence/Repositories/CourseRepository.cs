@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartLMS.Domain.Common.Exceptions;
 using SmartLMS.Domain.Courses;
+using SmartLMS.Domain.Courses.Entities;
+using SmartLMS.Domain.Courses.Repository;
 using SmartLMS.Infrastructure.Persistence.Exceptions;
 
 namespace SmartLMS.Infrastructure.Persistence.Repositories;
@@ -38,29 +40,8 @@ public class CourseRepository : ICourseRepository
 	public async Task<Course?> GetByIdAsync(Guid courseId, CancellationToken ct)
 	{
 		return await _dbContext.Courses
+			.AsTracking()
 			.Include(c => c.Enrollments) 
 			.FirstOrDefaultAsync(c => c.Id == courseId, ct);
-	}
-
-	public async Task EnrollStudentAsync(Guid courseId, Guid studentId, CancellationToken ct)
-	{
-		var course = await GetByIdAsync(courseId, ct);
-		if (course is null)
-			throw new RecordNotFoundException("Course", courseId);
-
-		course.EnrollStudent(studentId);
-
-		await _dbContext.SaveChangesAsync(ct);
-	}
-
-	public async Task SetFinalGradeAsync(Guid courseId, Guid studentId, decimal grade, CancellationToken ct)
-	{
-		var course = await GetByIdAsync(courseId, ct);
-		if (course is null)
-			throw new RecordNotFoundException("Course", courseId);
-
-		course.AssignGrade(studentId, grade);
-
-		await _dbContext.SaveChangesAsync(ct);
 	}
 }

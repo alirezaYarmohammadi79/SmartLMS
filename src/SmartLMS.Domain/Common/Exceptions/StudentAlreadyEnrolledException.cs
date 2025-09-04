@@ -3,5 +3,5 @@
 public class StudentAlreadyEnrolledException : DomainException
 {
 	public StudentAlreadyEnrolledException(Guid studentId)
-		: base($"Student with ID {studentId} is already enrolled.") { }
+		: base("StudentAlreadyEnrolled", $"Student with ID {studentId} is already enrolled.") { }
 }

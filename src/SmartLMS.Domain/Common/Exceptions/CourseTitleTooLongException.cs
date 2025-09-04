@@ -3,5 +3,5 @@
 public class CourseTitleTooLongException : DomainException
 {
 	public CourseTitleTooLongException(int length)
-		: base($"Course title is too long. Length: {length}") { }
+		: base("CourseTitleTooLong", $"Course title is too long. Length: {length}") { }
 }

@@ -16,7 +16,7 @@ public class Course : AggregateRoot<Guid>
     public DateRange Period { get; private set; }
     public Capacity Capacity { get; private set; }
     public Price Price { get; private set; }
-    public TeacherId TeacherId { get; private set; }
+    public Guid? TeacherId { get; private set; }
 
     private Course(Guid id,
         CourseTitle title,
@@ -24,7 +24,7 @@ public class Course : AggregateRoot<Guid>
         DateRange period,
         Capacity capacity,
         Price price,
-        TeacherId teacherId)
+        Guid? teacherId)
         : base(id)
     {
         Title = title;
@@ -40,11 +40,11 @@ public class Course : AggregateRoot<Guid>
         DateRange period,
         Capacity capacity,
         Price price,
-        TeacherId teacherId)
+        Guid? teacherId)
     {
         var course = new Course(
             Guid.NewGuid(),
-            title ,
+            title,
             description,
             period,
             capacity,
@@ -56,8 +56,11 @@ public class Course : AggregateRoot<Guid>
         return course;
     }
 
-    public void AssignTeacher(TeacherId teacherId)
+    public void AssignTeacher(Guid teacherId)
     {
+        if (TeacherId.HasValue && TeacherId.Value == teacherId)
+            throw new TeacherAlreadyAssignedException();
+
         TeacherId = teacherId;
     }
 
@@ -67,10 +70,10 @@ public class Course : AggregateRoot<Guid>
             throw new CourseFullException(Capacity.MaxSeats);
 
         if (_enrollments.Any(e => e.StudentId == studentId))
-			throw new StudentAlreadyEnrolledException(studentId);
+            throw new StudentAlreadyEnrolledException(studentId);
 
-		if (!Period.IsWithin(DateTime.UtcNow))
-			throw new CourseEnrollmentClosedException(DateTime.UtcNow);
+        if (!Period.IsWithin(DateTime.UtcNow))
+            throw new CourseEnrollmentClosedException(DateTime.UtcNow);
 
         _enrollments.Add(new Enrollment(studentId, Id, DateTime.UtcNow));
 
@@ -79,32 +82,32 @@ public class Course : AggregateRoot<Guid>
 
     public void RemoveStudent(Guid studentId)
     {
-		var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
-		if (enrollment is null)
-			throw new StudentNotEnrolledException(studentId);
+        var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
+        if (enrollment is null)
+            throw new StudentNotEnrolledException(studentId);
 
-		_enrollments.Remove(enrollment);
-		AddDomainEvent(new StudentRemoved(Id, studentId));
-	}
+        _enrollments.Remove(enrollment);
+        AddDomainEvent(new StudentRemoved(Id, studentId));
+    }
 
     public void AssignGrade(Guid studentId, decimal grade)
     {
-		if (DateTime.UtcNow < Period.End)
-			throw new CannotAssignGradeBeforeCourseEndsException(DateTime.UtcNow, Period.End);
+        if (DateTime.UtcNow < Period.End)
+            throw new CannotAssignGradeBeforeCourseEndsException(DateTime.UtcNow, Period.End);
 
-		var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
-		if (enrollment is null)
-			throw new StudentNotEnrolledException(studentId);
+        var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId);
+        if (enrollment is null)
+            throw new StudentNotEnrolledException(studentId);
 
-		enrollment.SetGrade(grade);
-		AddDomainEvent(new GradeAssigned(Id, studentId, grade));
-	}
+        enrollment.SetGrade(grade);
+        AddDomainEvent(new GradeAssigned(Id, studentId, grade));
+    }
 
     public int RemainingSeats() => Capacity.MaxSeats - _enrollments.Count;
 
 #pragma warning disable CS8618 
     public Course()
-    { 
+    {
     }
 #pragma warning restore CS8618 
 }

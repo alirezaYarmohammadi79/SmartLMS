@@ -5,3 +5,4 @@ public record CourseAdminReportDto(Guid CourseId ,
 	int EnrolledCount ,
 	int RemainCapacity , 
 	decimal? AverageGrade);
+

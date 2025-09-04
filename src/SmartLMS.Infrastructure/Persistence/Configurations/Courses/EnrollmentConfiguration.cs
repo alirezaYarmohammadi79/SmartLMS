@@ -24,15 +24,15 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
         builder.Property<DateTime>("EnrollmentDate")
                .IsRequired();
 
-		builder.HasOne<Student>()
-	           .WithMany()
-	           .HasForeignKey(e=> e.StudentId)
-	           .OnDelete(DeleteBehavior.Cascade);
-
-		builder.HasOne<Course>()
-               .WithMany(c => c.Enrollments)
-               .HasForeignKey(e => e.CourseId)
-               .IsRequired()
+        builder.HasOne<Student>()
+               .WithMany()
+               .HasForeignKey(e => e.StudentId)
                .OnDelete(DeleteBehavior.Cascade);
+
+        //builder.HasOne<Course>()
+        //       .WithMany(c => c.Enrollments)
+        //       .HasForeignKey(e => e.CourseId)
+        //       .IsRequired()
+        //       .OnDelete(DeleteBehavior.Cascade);
     }
 }

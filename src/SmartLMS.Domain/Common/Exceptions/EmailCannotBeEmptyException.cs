@@ -3,5 +3,5 @@
 public class EmailCannotBeEmptyException : DomainException
 {
 	public EmailCannotBeEmptyException()
-		: base("Email cannot be empty.") { }
+		: base("EmailCannotBeEmpty", "Email cannot be empty.") { }
 }

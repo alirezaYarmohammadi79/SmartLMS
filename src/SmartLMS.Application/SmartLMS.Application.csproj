@@ -10,9 +10,4 @@
     <ProjectReference Include="..\SmartLMS.Domain\SmartLMS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Courses\Command\AssignTeacher\" />
-    <Folder Include="Teachers\Query\" />
-  </ItemGroup>
-
 </Project>

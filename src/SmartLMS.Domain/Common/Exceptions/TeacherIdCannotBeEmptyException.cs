@@ -3,5 +3,5 @@
 public class TeacherIdCannotBeEmptyException : DomainException
 {
 	public TeacherIdCannotBeEmptyException()
-		: base("TeacherId cannot be empty.") { }
+		: base("TeacherIdCannotBeEmpty", "TeacherId cannot be empty.") { }
 }

@@ -1,6 +1,11 @@
 ﻿namespace SmartLMS.Domain.Common.Exceptions;
 
-public class DomainException : Exception
+public abstract class DomainException : Exception
 {
-    public DomainException(string message) : base(message) { }
+    public string ErrorCode { get; }
+
+    protected DomainException(string errorCode, string message) : base(message)
+    {
+        ErrorCode = errorCode;
+    }
 }

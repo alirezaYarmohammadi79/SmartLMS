@@ -3,5 +3,5 @@
 public class FirstNameCannotBeEmptyException : DomainException
 {
 	public FirstNameCannotBeEmptyException()
-		: base("FirstName cannot be empty.") { }
+		: base("FirstNameCannotBeEmpty", "FirstName cannot be empty.") { }
 }

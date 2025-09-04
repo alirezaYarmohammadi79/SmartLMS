@@ -12,15 +12,15 @@ using SmartLMS.Infrastructure.Persistence;
 namespace SmartLMS.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250901201444_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250904100433_CourseNullableTeacherId")]
+    partial class CourseNullableTeacherId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.19")
+                .HasAnnotation("ProductVersion", "9.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -40,7 +40,7 @@ namespace SmartLMS.Infrastructure.Persistence.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<Guid>("TeacherId")
+                    b.Property<Guid?>("TeacherId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("TeacherId");
 

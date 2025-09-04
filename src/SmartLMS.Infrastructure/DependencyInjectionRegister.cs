@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using SmartLMS.Application.Common.Interfaces.ReadRepositories;
-using SmartLMS.Domain.Courses;
+using SmartLMS.Domain.Courses.Repository;
+using SmartLMS.Domain.Students.Repository;
+using SmartLMS.Domain.Teachers.Repository;
 using SmartLMS.Infrastructure.Persistence;
 using SmartLMS.Infrastructure.Persistence.Interceptors;
 using SmartLMS.Infrastructure.Persistence.Repositories;
@@ -30,6 +31,8 @@ public static class DependencyInjectionRegister
 
 		services.AddScoped<PublishDomainEventsInterceptor>();
 		services.AddScoped<ICourseRepository, CourseRepository>();
+		services.AddScoped<ITeacherRepository, TeacherRepository>();
+		services.AddScoped<IStudentRepository, StudentRepository>();
 		services.AddScoped<ICourseReadRepository, CourseReadRepository>();
 
 		return services;

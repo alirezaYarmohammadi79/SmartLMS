@@ -66,9 +66,9 @@ namespace SmartLMS.Infrastructure.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Grade = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: true),
-                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Grade = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: true)
                 },
                 constraints: table =>
                 {

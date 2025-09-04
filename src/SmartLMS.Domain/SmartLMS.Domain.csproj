@@ -7,10 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MediatR" Version="12.4.1" />
+	  <Compile Remove="Teachers\ValueObjects\**" />
+	  <EmbeddedResource Remove="Teachers\ValueObjects\**" />
+	  <None Remove="Teachers\ValueObjects\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Teachers\ValueObjects\" />
+		<PackageReference Include="MediatR" Version="12.4.1" />
 	</ItemGroup>
 </Project>

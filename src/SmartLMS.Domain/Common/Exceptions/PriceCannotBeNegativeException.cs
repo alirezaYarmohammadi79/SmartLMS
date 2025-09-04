@@ -3,5 +3,5 @@
 public class PriceCannotBeNegativeException : DomainException
 {
 	public PriceCannotBeNegativeException(decimal amount)
-		: base($"Price cannot be negative. Given: {amount}") { }
+		: base("PriceCannotBeNegative", $"Price cannot be negative. Given: {amount}") { }
 }
