@@ -114,7 +114,7 @@ public class CoursesController : ControllerBase
     [HttpGet("TeacherCourses/{teacherId}")]
     public async Task<ActionResult<IReadOnlyList<TeacherCourseResponse>>> GetTeacherCourses(Guid teacherId)
     {
-        var result = await _mediator.Send(new GetTeacherCoursesQuery(teacherId));
+        IReadOnlyList<TeacherCourseDto>? result = await _mediator.Send(new GetTeacherCoursesQuery(teacherId));
         return Ok(_mapper.Map<List<TeacherCourseResponse>>(result));
     }
 

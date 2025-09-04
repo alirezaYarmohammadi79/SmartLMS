@@ -50,7 +50,12 @@ public class CourseMapping : IRegister
         config.NewConfig<StudentCourseDto, StudentCourseResponse>()
             .Map(dest => dest.Id, src => src.CourseId);
 
-        config.NewConfig<TeacherCourseDto, TeacherCourseResponse>();
+        config.NewConfig<TeacherCourseDto, TeacherCourseResponse>()
+            .Map(dest=> dest.Id , src=> src.CourseId)
+            .Map(dest => dest.EnrollmentCount, src => src.EnrolledCount)
+            .Map(dest => dest.Title, src => src.CourseTitle);
+
+
         config.NewConfig<EnrolledStudentsDto, EnrolledStudentsResponse>()
             .Map(dest => dest.FullName, src => src.StudentName)
             .Map(dest => dest.Email, src => src.StudentEmail);

@@ -20,7 +20,7 @@ public class CourseReadRepository : ICourseReadRepository
 
     public async Task<IReadOnlyList<CourseAdminReportDto>> GetCourseAdminReportsAsync()
     {
-        return await _db.Courses
+        return await _db.Courses.AsNoTracking()
             .Select(c => new CourseAdminReportDto(
                 c.Id,
                 c.Title.Value,
@@ -94,10 +94,10 @@ public class CourseReadRepository : ICourseReadRepository
 
     public async Task<IReadOnlyList<EnrolledStudentsDto>> GetEnrolledStudentsAsync(Guid courseId)
     {
-        return await _db.Enrollments
+        return await _db.Enrollments.AsNoTracking()
             .Where(e => e.CourseId == courseId)
             .Join(
-                _db.Students,
+                _db.Students.AsNoTracking(),
                 e => e.StudentId,
                 s => s.Id,
                 (e, s) => new EnrolledStudentsDto(

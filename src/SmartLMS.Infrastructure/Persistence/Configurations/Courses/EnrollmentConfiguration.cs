@@ -14,6 +14,10 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
 
         builder.HasKey(e => e.Id);
 
+        builder.Property(c => c.Id)
+              .ValueGeneratedNever()
+              .HasColumnName("Id");
+
         builder.Property(e => e.StudentId)
                .IsRequired();
 
@@ -28,11 +32,5 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
                .WithMany()
                .HasForeignKey(e => e.StudentId)
                .OnDelete(DeleteBehavior.Cascade);
-
-        //builder.HasOne<Course>()
-        //       .WithMany(c => c.Enrollments)
-        //       .HasForeignKey(e => e.CourseId)
-        //       .IsRequired()
-        //       .OnDelete(DeleteBehavior.Cascade);
     }
 }

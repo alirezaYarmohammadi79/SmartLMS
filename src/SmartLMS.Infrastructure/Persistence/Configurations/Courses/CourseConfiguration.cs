@@ -19,6 +19,10 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
 
         builder.HasKey(c => c.Id);
 
+        builder.Property(c => c.Id)
+              .ValueGeneratedNever()
+              .HasColumnName("Id");
+
         builder.Property(c => c.Title)
                .HasConversion(
                    v => v.Value,
