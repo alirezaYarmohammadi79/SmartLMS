@@ -15,6 +15,7 @@ using SmartLMS.Application.Courses.Query.GetEnrolledStudents;
 using SmartLMS.Application.Courses.Query.GetStudentCourses;
 using SmartLMS.Application.Courses.Query.GetTeacherCourses;
 using SmartLMS.Contracts.Courses;
+using SmartLMS.Contracts.Courses.Requests;
 
 namespace SmartLMS.Api.Controllers;
 

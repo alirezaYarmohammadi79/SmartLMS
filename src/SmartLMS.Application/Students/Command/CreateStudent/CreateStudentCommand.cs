@@ -7,5 +7,5 @@ public record CreateStudentCommand(
     string FirstName,
     string LastName,
     string Email,
-    DateTime? DateOfBirth
+    DateTime DateOfBirth
 ) : IRequest<Guid>;

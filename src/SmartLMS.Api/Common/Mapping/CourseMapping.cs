@@ -9,6 +9,7 @@ using SmartLMS.Application.Courses.Query.GetCourseStudents;
 using SmartLMS.Application.Courses.Query.GetStudentCourses;
 using SmartLMS.Application.Courses.Query.GetTeacherCourses;
 using SmartLMS.Contracts.Courses;
+using SmartLMS.Contracts.Courses.Requests;
 using SmartLMS.Domain.Courses;
 
 namespace SmartLMS.Api.Common.Mapping;

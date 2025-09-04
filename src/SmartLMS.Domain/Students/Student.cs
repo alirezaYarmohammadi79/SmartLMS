@@ -10,13 +10,13 @@ public class Student : AggregateRoot<Guid>
 {
     public FullName FullName { get; private set; }
     public Email Email { get; private set; }
-    public DateOfBirth? DateOfBirth { get; private set; }
+    public DateOfBirth DateOfBirth { get; private set; }
     public StudentStatus Status { get; private set; } 
 
     private Student(Guid id, 
         FullName name, 
         Email email,
-        DateOfBirth? dob = null,
+        DateOfBirth dob,
         StudentStatus status = StudentStatus.Active)
         : base(id)
     {
@@ -26,14 +26,14 @@ public class Student : AggregateRoot<Guid>
         Status = status;
     }
 
-    public static Student Create(FullName name, Email email, DateOfBirth? dob = null)
+    public static Student Create(FullName name, Email email, DateOfBirth dob)
     {
         var student = new Student(Guid.NewGuid(), name, email, dob);
         student.AddDomainEvent(new StudentCreated(student));
         return student;
     }
 
-    public void UpdateInfo(FullName name, Email email, DateOfBirth? dob = null)
+    public void UpdateInfo(FullName name, Email email, DateOfBirth dob)
     {
         FullName = name;
         Email = email;

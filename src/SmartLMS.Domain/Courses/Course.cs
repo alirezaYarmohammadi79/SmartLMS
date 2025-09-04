@@ -72,7 +72,7 @@ public class Course : AggregateRoot<Guid>
         if (_enrollments.Any(e => e.StudentId == studentId))
             throw new StudentAlreadyEnrolledException(studentId);
 
-        if (!Period.IsWithin(DateTime.UtcNow))
+        if (!Period.IsWithinEnrollmentPeriod(DateTime.UtcNow))
             throw new CourseEnrollmentClosedException(DateTime.UtcNow);
 
         _enrollments.Add(new Enrollment(studentId, Id, DateTime.UtcNow));

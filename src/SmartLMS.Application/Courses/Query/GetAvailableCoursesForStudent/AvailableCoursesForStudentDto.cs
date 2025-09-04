@@ -2,7 +2,7 @@
 
 public record AvailableCoursesForStudentDto(Guid Id, 
 	string Title,
-	Guid TeacherId,
+	Guid? TeacherId,
 	string TeacherName,
 	int RemainingSeats,
 	DateTime Start,

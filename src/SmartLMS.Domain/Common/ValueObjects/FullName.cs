@@ -8,7 +8,9 @@ public sealed class FullName : ValueObject
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
 
+#pragma warning disable CS8618
     private FullName() { }
+#pragma warning restore CS8618
 
     public FullName(string firstName, string lastName)
     {

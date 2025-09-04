@@ -19,7 +19,7 @@ public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand,
     {
         var fullName = new FullName(request.FirstName, request.LastName);
         var email = new Email(request.Email);
-        var dob = request.DateOfBirth is not null ? new DateOfBirth(request.DateOfBirth.Value) : null;
+        var dob = new DateOfBirth(request.DateOfBirth);
 
         var student = Student.Create(fullName, email, dob);
 

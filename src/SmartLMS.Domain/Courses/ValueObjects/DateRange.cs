@@ -17,7 +17,7 @@ public sealed class DateRange : ValueObject
         End = end;
     }
 
-    public bool IsWithin(DateTime date) => date >= Start && date <= End;
+    public bool IsWithinEnrollmentPeriod(DateTime date) => date <= End;
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

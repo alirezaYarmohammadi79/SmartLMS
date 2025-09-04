@@ -25,7 +25,9 @@ public sealed class Price : ValueObject
         yield return Currency;
     }
 
-	public Price()
-	{
-	}
+
+
+#pragma warning disable CS8618
+    public Price() { }
+#pragma warning restore CS8618
 }

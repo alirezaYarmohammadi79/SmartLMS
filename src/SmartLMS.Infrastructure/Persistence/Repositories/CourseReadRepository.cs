@@ -43,7 +43,7 @@ public class CourseReadRepository : ICourseReadRepository
                 (course, teacher) => new AvailableCoursesForStudentDto(
                     course.Id,
                     course.Title.Value,
-                    course.TeacherId.Value,
+                    course.TeacherId,
                     teacher.FullName.ToString(),
                     course.Capacity.MaxSeats - course.Enrollments.Count,
                     course.Period.Start,

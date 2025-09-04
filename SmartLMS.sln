@@ -9,11 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLMS.Application", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLMS.Domain", "src\SmartLMS.Domain\SmartLMS.Domain.csproj", "{75A0C6D0-6012-42DC-8339-557033D11609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartLMS.Infrastructure", "src\SmartLMS.Infrastructure\SmartLMS.Infrastructure.csproj", "{0C6AD4B9-A340-437F-95AA-1337703414EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLMS.Infrastructure", "src\SmartLMS.Infrastructure\SmartLMS.Infrastructure.csproj", "{0C6AD4B9-A340-437F-95AA-1337703414EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartLMS.Contracts", "src\SmartLMS.Contracts\SmartLMS.Contracts.csproj", "{E9120385-6A93-4F1E-834D-2B079A7152A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLMS.Contracts", "src\SmartLMS.Contracts\SmartLMS.Contracts.csproj", "{E9120385-6A93-4F1E-834D-2B079A7152A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartLMS.Api", "src\SmartLMS.Api\SmartLMS.Api.csproj", "{DE652B17-1976-48CF-ABE9-78F31C286BDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLMS.Api", "src\SmartLMS.Api\SmartLMS.Api.csproj", "{DE652B17-1976-48CF-ABE9-78F31C286BDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AE4E6922-449A-4406-BBCE-875058DCF479}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{A07F75ED-1E71-4462-BBBA-A73339A0B776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartLMS.Domain.UnitTests", "tests\UnitTests\SmartLMS.Domain.UnitTests\SmartLMS.Domain.UnitTests.csproj", "{04DABF16-622B-4144-BE94-6CF44F716433}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +91,18 @@ Global
 		{DE652B17-1976-48CF-ABE9-78F31C286BDB}.Release|x64.Build.0 = Release|Any CPU
 		{DE652B17-1976-48CF-ABE9-78F31C286BDB}.Release|x86.ActiveCfg = Release|Any CPU
 		{DE652B17-1976-48CF-ABE9-78F31C286BDB}.Release|x86.Build.0 = Release|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Debug|x64.Build.0 = Debug|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Debug|x86.Build.0 = Debug|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Release|x64.ActiveCfg = Release|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Release|x64.Build.0 = Release|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Release|x86.ActiveCfg = Release|Any CPU
+		{04DABF16-622B-4144-BE94-6CF44F716433}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,5 +113,10 @@ Global
 		{0C6AD4B9-A340-437F-95AA-1337703414EB} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{E9120385-6A93-4F1E-834D-2B079A7152A1} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{DE652B17-1976-48CF-ABE9-78F31C286BDB} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{A07F75ED-1E71-4462-BBBA-A73339A0B776} = {AE4E6922-449A-4406-BBCE-875058DCF479}
+		{04DABF16-622B-4144-BE94-6CF44F716433} = {A07F75ED-1E71-4462-BBBA-A73339A0B776}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BEAA28A-9E04-4BF7-B0E4-2DFCBE4430AF}
 	EndGlobalSection
 EndGlobal
