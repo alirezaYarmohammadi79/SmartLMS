@@ -1,7 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using SmartLMS.Api;
 using SmartLMS.Api.Middleware;
 using SmartLMS.Application;
 using SmartLMS.Infrastructure;
+using SmartLMS.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,11 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+
+var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+db.Database.Migrate();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
