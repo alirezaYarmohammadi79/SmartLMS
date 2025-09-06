@@ -1,3 +1,5 @@
-﻿namespace SmartLMS.Application.Courses.Command.SetFinalGradeCommand;
+﻿using MediatR;
 
-public record SetFinalGradeCommand(Guid CourseId, Guid StudentId, decimal Grade);
+namespace SmartLMS.Application.Courses.Command.SetFinalGradeCommand;
+
+public record SetFinalGradeCommand(Guid CourseId, Guid StudentId, decimal Grade) : IRequest;

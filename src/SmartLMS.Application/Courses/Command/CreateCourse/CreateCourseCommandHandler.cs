@@ -12,15 +12,21 @@ public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, G
 	private readonly ICourseRepository _courseRepo;
 	private readonly ITeacherRepository _teacherRepo;
 
-    public CreateCourseCommandHandler(ICourseRepository courseRepo,
+	public CreateCourseCommandHandler(ICourseRepository courseRepo,
 		ITeacherRepository teacherRepo)
-    {
-        _courseRepo = courseRepo;
-        _teacherRepo = teacherRepo;
-    }
-
-    public async Task<Guid> Handle(CreateCourseCommand request, CancellationToken ct)
 	{
+		_courseRepo = courseRepo;
+		_teacherRepo = teacherRepo;
+	}
+
+	public async Task<Guid> Handle(CreateCourseCommand request, CancellationToken ct)
+	{
+		if (request.TeacherId != null)
+		{
+			var teacher = await _teacherRepo.GetByIdAsync(request.TeacherId.Value, ct) 
+				?? throw new NotFoundException("Teacher with sent Id was not found");
+		}
+
 		var course = Course.Create(
 			new CourseTitle(request.Title),
 			request.Description,
